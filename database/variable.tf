@@ -62,3 +62,8 @@ variable "backup_time" {
     default = "09:46-10:16"
   
 }
+
+variable "parameter_group_name " {
+    type = string
+    default = "default.mariadb10.4" 
+}
