@@ -35,3 +35,10 @@ module "autoscale" {
     alb_dns_name = module.loadbalancer.alb_dns_name
     alb_target_group_arn = module.loadbalancer.alb_target_group_arn
 }
+module "database" {
+    source = "./database"
+    priv_subnet1 = module.network.priv_subnet1
+    priv_subnet2 = module.network.priv_subnet2
+    database_sg  = module.compute.database_sg
+    
+}
