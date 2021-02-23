@@ -8,8 +8,8 @@ module "network" {
 
 module "computing" {
     source = "./compute"
-    priv_subnets = module.network.public-subnets
-    pub_subnets  = module.network.private-subnets
+    priv_subnets = module.network.private-subnets
+    pub_subnets  = module.network.public-subnets
     vpc-id = module.network.vpc-id
     pub_subnet1 = module.network.pub_subnet1
     pub_subnet2 = module.network.pub_subnet2
@@ -21,7 +21,6 @@ module "loadbalancer" {
     source = "./alb"
     instance1_id = module.computing.instance1_id
     instance2_id = module.computing.instance2_id
-    alb_sg = module.computing.alb_sg
     vpc-id = module.network.vpc-id 
     pub_subnet1 = module.network.pub_subnet1
     pub_subnet2 = module.network.pub_subnet2
@@ -39,6 +38,6 @@ module "database" {
     source = "./database"
     priv_subnet1 = module.network.priv_subnet1
     priv_subnet2 = module.network.priv_subnet2
-    database_sg  = module.compute.database_sg
-    
+    database_sg  = module.computing.database_sg
+
 }

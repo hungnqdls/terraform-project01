@@ -7,7 +7,6 @@ resource "aws_instance" "webapp" {
     subnet_id = var.pub_subnets[count.index] 
     vpc_security_group_ids = [aws_security_group.webapp.id]
     availability_zone = data.aws_availability_zones.available.names[count.index]
-    private_ip = var.webapp_static_ip[count.index]
     root_block_device {
      volume_type = var.type_volume["webapp"]
      volume_size = var.size_volume["webapp"]

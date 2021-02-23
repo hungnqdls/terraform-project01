@@ -31,12 +31,13 @@ resource "aws_subnet" "project01-private-subnet" {
       "Name" = "${var.env_name["project_name"]}.${var.env_name["private_subnet_name"]}.${count.index}"
   }
 }
-resource "aws_eip" "project01-natgw-eip" {
-    vpc = true
-    tags = {
-      "Name" = "${var.env_name["project_name"]}.${var.env_name["eip_natgw_name"]}"
-    }
-}
+#resource "aws_eip" "project01-natgw-eip" {
+#    vpc = true
+#    tags = {
+#      "Name" = "${var.env_name["project_name"]}.${var.env_name["eip_natgw_name"]}"
+#    }
+#
+#}
 
 resource "aws_internet_gateway" "project01-internetgw" {
     vpc_id = aws_vpc.project01-vpc.id
@@ -44,13 +45,13 @@ resource "aws_internet_gateway" "project01-internetgw" {
         "Name" = "${var.env_name["project_name"]}.${var.env_name["internet_gateway_name"]}"
     }
 }
-resource "aws_nat_gateway" "project01-natgw" {
-    allocation_id = aws_eip.project01-natgw-eip.id
-    subnet_id = aws_subnet.project01-public-subnet.*.id[0]
-    tags = {
-      "Name" = "${var.env_name["project_name"]}.${var.env_name["nat_gateway_name"]}"
-    }
-}
+#resource "aws_nat_gateway" "project01-natgw" {
+#    allocation_id = aws_eip.project01-natgw-eip.id
+#    subnet_id = aws_subnet.project01-public-subnet.*.id[0]
+#    tags = {
+#      "Name" = "${var.env_name["project_name"]}.${var.env_name["nat_gateway_name"]}"
+#   }
+#}
 resource "aws_default_route_table" "default-route" {
    default_route_table_id = aws_route_table.project01-public-route.id
    route {
@@ -69,7 +70,7 @@ resource "aws_route_table" "project01-private-route" {
     vpc_id = aws_vpc.project01-vpc.id
     route {
         cidr_block = var.default_route_cidr
-        gateway_id = aws_nat_gateway.project01-natgw.id 
+        #gateway_id = aws_nat_gateway.project01-natgw.id 
     }
     tags = {
         "Name" = "${var.env_name["project_name"]}.${var.env_name["private_routetb_name"]}"

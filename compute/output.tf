@@ -13,6 +13,3 @@ output "webapp_sg" {
 output "database_sg" {
     value = aws_security_group.database.id 
 }
-output "alb_sg" {
-    value = aws_security_group.alb.id
-}

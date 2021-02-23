@@ -44,9 +44,24 @@ variable "instance1_id" {
 }
 variable "instance2_id" {
 }
-variable "alb_sg" {
-}
 variable "pub_subnet1" {
 }
 variable "pub_subnet2" {
+}
+variable "sg_name" {
+  type = string
+  default = "Application Load Balancer Security Group"
+}
+variable "public_cidr" {
+  type = list(string)
+  default = ["0.0.0.0/0"]
+}
+variable "ingress_alb" {
+  type = map(string)
+  default = {
+      http = "80"
+      https = "443"
+      protocol = "tcp"
+  }
+  
 }

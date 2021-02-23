@@ -63,7 +63,6 @@ variable "sg_name" {
         webapp_sg_name = "Security Group For Web Application"
         bastion_sg_name = "Security Group For Bastion Hosts"
         database_sg_name = "Security Group For RDS"
-        alb_sg_name = "Security Group For Application Load Balancer"
     }
   
 }
@@ -97,10 +96,6 @@ variable "public_block_cidr" {
 variable "outgoing_cidr" {
     type = list
     default = ["0.0.0.0/0","10.10.10.0/24","10.10.20.0/24","10.10.30.0/24","10.10.40.0/24"]
-}
-variable "webapp_static_ip" {
-    type = list
-    default = ["10.10.10.10","10.10.30.10"]
 }
 variable "private_block_cidr" {
     type = list

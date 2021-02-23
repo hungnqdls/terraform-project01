@@ -80,21 +80,4 @@ resource "aws_security_group" "bastion" {
     protocol    = var.port_list_tcp["protocol"]
   }
 }
-resource "aws_security_group" "alb" {
-  vpc_id = var.vpc-id
-  name = var.sg_name["alb_sg_name"]
-  ingress {
-  cidr_blocks = var.public_block_cidr
-  description = var.ingress_des["http_allow"]
-  from_port = var.port_list_tcp["HTTP"]
-  to_port = var.port_list_tcp["HTTP"]
-  protocol = var.port_list_tcp["protocol"]
-  }
-  ingress {
-    cidr_blocks = var.public_block_cidr
-    description = var.ingress_des["https_allow"]
-    from_port = var.port_list_tcp["HTTPS"]
-    to_port = var.port_list_tcp["HTTPS"]
-    protocol = var.port_list_tcp["protocol"]
-  }
-}
+

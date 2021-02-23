@@ -13,15 +13,15 @@ variable "db_count" {
 }
 variable "db_instance" {
     type = string
-    default = "t2.micro"
+    default = "db.t2.medium"
 }
 variable "db_engine" {
     type = string 
     default = "mariadb"
 }
 variable "db_engine_version" {
-    type = number
-    default = "10.1.14"
+    type = string
+    default = "10.4.8"
 }
 variable "db_multi_az" {
     type = bool
@@ -39,14 +39,14 @@ variable "env_name" {
     type = map(string)
     default = {
         instance_name = "myrds01"
-        rds_subnet_name = "RDS Subnet Group"
+        rds_subnet_name = "rds_subnet_group"
     }
 }
 variable "login_info" {
     type = map(string)
     default = {
-        db_username = "null"
-        db_password = "null"
+        db_username = "admin"
+        db_password = "test123456"
     }
 }
 variable "apply_immediate" {
@@ -57,7 +57,7 @@ variable "backup_retention" {
     type = number
     default = "10"
 }
-variable "backuptime" {
+variable "backup_time" {
     type = string 
     default = "09:46-10:16"
   
