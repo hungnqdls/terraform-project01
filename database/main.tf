@@ -14,6 +14,7 @@ resource "aws_db_instance" "myrds01" {
     backup_window = var.backup_time
     db_subnet_group_name = aws_db_subnet_group.rds_subnet_group.name
     vpc_security_group_ids = [ var.database_sg ]
+    parameter_group_name = var.parameter_group_name
 }
 resource "aws_db_subnet_group" "rds_subnet_group" {
     name = var.env_name["rds_subnet_name"]
